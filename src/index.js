@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import "./index.css";
 
 const pizzaData = [
     {
@@ -50,7 +51,7 @@ const pizzaData = [
 function App(){
  
     return ( 
-        <div>
+        <div className="container">
             <Header />
             <Menu />
             <Footer />
@@ -72,18 +73,30 @@ root.render(
 //making compoinents    
 
 function Header(){
-    return <h1>Fast React Pizza .co</h1>
+
+  // const style ={
+  //   color:"green",
+  //   fontSize:"39px",
+  //   textTransform:"uppercase"
+  // };
+
+    return (
+      <header className="header">
+        <h1>
+          Learning React with Pizza Menu
+        </h1>
+      </header>);
 }
 
 function Menu(){
     return (
-        <div>
+        <main className ="menu">
             <h2>Our menu</h2>
             <Pizza />
             <Pizza />
             <Pizza/>
             <Pizza />
-        </div>
+        </main>
     );
 }
 
@@ -100,7 +113,7 @@ function Footer(){
     // }
    // return React.createElement('footer',null,"All rights reserved")
    return (
-   <footer>
+   <footer className="footer">
     {new Date().toLocaleTimeString()}. We're currently Open</footer>
    );
 }
