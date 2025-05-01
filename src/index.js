@@ -91,14 +91,38 @@ function Header(){
 function Menu(){
     return (
         <main className ="menu">
+
             <h2>Our menu</h2>
-            <Pizza />
-            <Pizza />
-            <Pizza/>
-            <Pizza />
+
+            <Pizza name="Pizza Funghi" 
+            ingredients="Tomato, mozarella, mushrooms, and onion"
+            photoName="pizzas/funghi.jpg" price={200} />    
+
+            <Pizza name="Pizza Margherita" 
+            ingredients="Tomato and mozarella"
+            photoName="pizzas/margherita.jpg" price={300} />
+        
         </main>
     );
 }
+
+
+
+function Pizza(props){
+  console.log(props);
+  return (
+      <div className="pizza">
+          <img src={props.photoName} alt="Pizza funghi" />
+          <div>
+            <h1>{props.name}</h1>
+            <p> {props.ingredients} </p> 
+            <span>{props.price}</span>
+          </div>
+      </div>
+  );
+}
+
+
 
 function Footer(){
     const hour = new Date().getHours();
@@ -120,12 +144,3 @@ function Footer(){
 
 
 
-function Pizza(){
-    return (
-        <div>
-            <img src="pizzas/funghi.jpg" alt="Pizza funghi" />
-            <h1>Pizza</h1>
-            <p> Pizza is a fast food , which also can be made in home </p> 
-        </div>
-    );
-}
