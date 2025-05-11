@@ -98,14 +98,13 @@ function Menu(){
 
             <h2>Our menu</h2>
 
-            {totalpizza>0 && (
+            {totalpizza>0 ?(
                 <ul className="pizzas">
                 {
                  pizzas.map( (pizza)=>
                   <Pizza pizzaObject={pizza} key={pizza.name} />)
                 };
-              </ul>
-              )
+              </ul>):<p>Sorry our Pizza are finished,Comeback tommorow!</p>
             };
 
             {/* <Pizza name="Pizza Funghi" 
