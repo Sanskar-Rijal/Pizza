@@ -89,19 +89,33 @@ function Header(){
 }
 
 function Menu(){
+
+  const pizzas= pizzaData;
+  const totalpizza= pizzas.length;
+
     return (
         <main className ="menu">
 
             <h2>Our menu</h2>
 
-            <Pizza name="Pizza Funghi" 
+            {totalpizza>0 && (
+                <ul className="pizzas">
+                {
+                 pizzas.map( (pizza)=>
+                  <Pizza pizzaObject={pizza} key={pizza.name} />)
+                };
+              </ul>
+              )
+            };
+
+            {/* <Pizza name="Pizza Funghi" 
             ingredients="Tomato, mozarella, mushrooms, and onion"
             photoName="pizzas/funghi.jpg" price={200} />    
 
             <Pizza name="Pizza Margherita" 
             ingredients="Tomato and mozarella"
             photoName="pizzas/margherita.jpg" price={300} />
-        
+         */}
         </main>
     );
 }
@@ -111,14 +125,14 @@ function Menu(){
 function Pizza(props){
   console.log(props);
   return (
-      <div className="pizza">
-          <img src={props.photoName} alt="Pizza funghi" />
+      <li className="pizza">
+          <img src={props.pizzaObject.photoName} alt="Pizza funghi" />
           <div>
-            <h1>{props.name}</h1>
-            <p> {props.ingredients} </p> 
-            <span>{props.price}</span>
+            <h1>{props.pizzaObject.name}</h1>
+            <p> {props.pizzaObject.ingredients} </p> 
+            <span>{props.pizzaObject.price + 7} </span>
           </div>
-      </div>
+      </li>
   );
 }
 
@@ -138,7 +152,17 @@ function Footer(){
    // return React.createElement('footer',null,"All rights reserved")
    return (
    <footer className="footer">
-    {new Date().toLocaleTimeString()}. We're currently Open</footer>
+    {
+      isOpen && (
+        <div className="order">
+          <p>
+           We are currently open.We'll be opening till {closeHOur}:00.Order Now!!!
+         </p>
+         <button className="btn">!!Order Now!!</button>
+        </div>
+      )
+    }
+    </footer>
    );
 }
 
