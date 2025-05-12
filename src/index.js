@@ -123,6 +123,10 @@ function Menu(){
 
 function Pizza(props){
   console.log(props);
+
+  if(props.pizzaObject.soldOut)
+    return null;
+
   return (
       <li className="pizza">
           <img src={props.pizzaObject.photoName} alt="Pizza funghi" />
@@ -149,20 +153,41 @@ function Footer(){
     //     alert("Sorry we're closed");
     // }
    // return React.createElement('footer',null,"All rights reserved")
+
+  //  if(!isOpen){
+  //   return(
+  //       <p>
+  //         We're closed now. Please come back between {openHour}:00 and {closeHOur}:00
+  //       </p>
+  //   )
+  //  };
+
+
+
    return (
    <footer className="footer">
     {
-      isOpen && (
-        <div className="order">
-          <p>
-           We are currently open.We'll be opening till {closeHOur}:00.Order Now!!!
-         </p>
-         <button className="btn">!!Order Now!!</button>
-        </div>
+      isOpen ? (
+        <Order  closed={closeHOur}/>
+      ): (
+        <p>
+          We're closed now. Please come back between {openHour}:00 and {closeHOur}:00
+        </p>
       )
     }
     </footer>
    );
+}
+
+function Order({closed}){
+  return(
+    <div className="order">
+      <p>
+        We are currently open.We'll be opening till {closed}:00.Order Now!!!
+      </p>
+      <button className="btn">!!Order Now!!</button>
+    </div>
+  )
 }
 
 
