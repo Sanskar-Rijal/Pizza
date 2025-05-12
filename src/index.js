@@ -98,15 +98,22 @@ function Menu(){
 
             <h2>Our menu</h2>
 
+            
+
             {totalpizza>0 ?(
+              <>
+               <p>PizzaHut the Best pizzas availabe here.Finger licking good.6 creative pizza options availabe.
+               Healthy and delicious pizzas made with fresh ingredients.  
+               </p>
                 <ul className="pizzas">
                 {
                  pizzas.map( (pizza)=>
                   <Pizza pizzaObject={pizza} key={pizza.name} />)
                 };
-              </ul>):<p>Sorry our Pizza are finished,Comeback tommorow!</p>
+              </ul>
+              </>
+              ):<p>Sorry our Pizza are finished,Comeback tommorow!</p>
             };
-
             {/* <Pizza name="Pizza Funghi" 
             ingredients="Tomato, mozarella, mushrooms, and onion"
             photoName="pizzas/funghi.jpg" price={200} />    
@@ -116,7 +123,7 @@ function Menu(){
             photoName="pizzas/margherita.jpg" price={300} />
          */}
         </main>
-    );
+    ); 
 }
 
 
@@ -124,16 +131,13 @@ function Menu(){
 function Pizza(props){
   console.log(props);
 
-  if(props.pizzaObject.soldOut)
-    return null;
-
   return (
-      <li className="pizza">
+      <li className={`pizza ${props.pizzaObject.soldOut?"sold-out":""}`}>
           <img src={props.pizzaObject.photoName} alt="Pizza funghi" />
           <div>
             <h1>{props.pizzaObject.name}</h1>
             <p> {props.pizzaObject.ingredients} </p> 
-            <span>{props.pizzaObject.price + 7} </span>
+            <span>{props.pizzaObject.soldOut?"Sold Out":props.pizzaObject.price} </span>
           </div>
       </li>
   );
